@@ -11,29 +11,37 @@ $(document).ready(() => {
     let articulos = DOM["elmArticulos"];
     let lista = $('<ul id="basket-items"></ul>');
     DOM["elmCesta"].append(lista);
-    $.ajax({
-        type: "GET",
-        url : "http://localhost:8080/api/products",
-        dataType : "json",
-        crossDomain: true,
-        success: function (result , status, xhr){
-            $.each(result.productEntity, function (i, product){
-                let div = $(`
+    $(articulos).loader();
+    articulos.fadeOut(1000, function () {
+        $.ajax({
+            type: "GET",
+            url : "http://localhost:8080/api/products",
+            dataType : "json",
+            crossDomain: true,
+            success: function (result , status, xhr){
+                $.each(result.productEntity, function (i, product){
+                    let div = $(`
                     <div>
                         <span>${product.name}</span> - <span>${product.price}</span>
                     </div>
                 `);
-                let input = $(`<input type="checkbox" class="check" name="${product.attName}">`)
-                $(input).on("click", function (){
-                    $(this).attr("checked","checked");
+                    let input = $(`<input type="checkbox" class="check" name="${product.attName}">`)
+                    $(input).on("click", function (){
+                        $(this).attr("checked","checked");
+                    })
+                    div.prepend(input);
+                    articulos.append(div);
                 })
-                div.prepend(input);
-                articulos.append(div);
-            })
-        },
-        error: function(xhr, status, error){
-            alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
-        }
+            },
+            error: function(xhr, status, error){
+                alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
+            }
+        });
+
+        console.log(this)
+    });
+    articulos.fadeIn(100, function (){
+        $.loader.close();
     });
         $(DOM["elmPrecio"]).html(igic.toString())
         $(DOM["elmPrecioTotal"]).html(importe.toString())
