@@ -3,42 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Carrito</title>
+    <link href="asserts/css/style.css" rel="stylesheet">
 </head>
 <body>
 <div>
     <h2>Artículos</h2>
     <div id="articulos">
-        <div>
-            <input class="check" name="ps5" type="checkbox" />
-            <span>Playstation 5</span> -
-            <span>499.95</span>€
-        </div>
-        <div>
-            <input class="check" name="tv" type="checkbox" />
-            <span>TV Xiaomi 43"</span> -
-            <span>324.95</span>€
-        </div>
-        <div>
-            <input class="check" name="nevera" type="checkbox" />
-            <span>Nevera Samsung</span> -
-            <span>1099.95</span>€
-        </div>
-        <div>
-            <input class="check" name="nevera" type="checkbox" />
-            <span>Lavadora/Secadora Balay</span> -
-            <span>1049.95</span>€
-        </div>
-        <div>
-            <input class="check" name="xbox" type="checkbox" />
-            <span>Xbox Series S</span> -
-            <span>299.95</span>€
-        </div>
+
     </div>
     <div>
         <button id="btn-cargar">Agregar al Carrito</button>
     </div>
 </div>
-<div >
+<div>
     <h2>Cesta de la compra</h2>
     <div id="cesta">
         <div>
@@ -46,40 +23,12 @@
             <p><strong>Importe Total: </strong><span id="precio-total"></span>€</p>
         </div>
     </div>
-</div>
-<script src="asserts/jquery/jquery-ui-1.12.1/jquery-ui.min.js"></script>
-<script src="asserts/jquery/jquery-ui-1.12.1/external/jquery/jquery.js"></script>
-<script>
-    const DOM = {
-        elmArticulos : $("#articulos"),
-        elmCesta : $("#cesta"),
-        elmPrecio : $("#precio"),
-        elmPrecioTotal : $("#precio-total"),
-        elmCargar : $("#btn-cargar")
-    };
-    let igic = 0.0;
-    let importe = 0.0;
-    $(document).ready(
-        function (){
-            $(DOM["elmPrecio"]).html(igic.toString())
-            $(DOM["elmPrecioTotal"]).html(importe.toString())
-        }
-    );
-    function eventoCargar(){
-        let i = 0;
-        for(let articulo of $("#articulos div")){
-            let tabla = $(document).append("<table></table>");
-            tabla.id = "tabla";
-            $(DOM["elmCesta"]).append(tabla);
-            if($(".check")[i].checked){
-                let nombre = $(`#articulos div:nth-of-type(${i+1}) span:nth-of-type(1)`).innerText;
-                let precio = $(`#articulos div:nth-of-type(${i+1}) span:nth-of-type(2)`).innerText;
 
-                $(tabla).append(`<tr><td>${nombre}</td><td>${precio}</td></tr>`)
-            }
-            i++;
-        }
-    }
-</script>
+</div>
+
+<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+<script src="asserts/js/loader/jquery-loader.js" type="text/javascript"></script>
+<script src="asserts/js/main.js"></script>
 </body>
 </html>
